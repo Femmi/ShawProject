@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 
 namespace DataLayer.ApplicationBasics
 {
@@ -11,7 +6,7 @@ namespace DataLayer.ApplicationBasics
     {
         private ApplicationBasic() { }
 
-        private static string url;
+        private static string _url;
 
         private static ApplicationBasic _applicationBasic;
 
@@ -24,8 +19,8 @@ namespace DataLayer.ApplicationBasics
         {
             get
             {
-                url = ConfigurationManager.AppSettings["urlString"];
-                return url;
+                _url = ConfigurationManager.AppSettings["urlString"];
+                return _url;
             }
         }
 
