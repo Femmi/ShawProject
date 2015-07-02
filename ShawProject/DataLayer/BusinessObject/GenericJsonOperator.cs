@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace DataLayer.BusinessObject
 {
-    class GenericJsonOperator
+    public class GenericJsonOperator
     {
         private static T SerializedJsonDataRetriver<T>(string url) where T : new()
         {
