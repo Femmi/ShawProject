@@ -25,6 +25,7 @@ namespace ShawProject
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/full-slider.css",
                       "~/Content/site.css"));
         }
     }
