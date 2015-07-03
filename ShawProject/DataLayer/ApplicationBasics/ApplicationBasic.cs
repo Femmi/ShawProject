@@ -15,7 +15,7 @@ namespace DataLayer.ApplicationBasics
             return _applicationBasic ?? (_applicationBasic = new ApplicationBasic());
         }
 
-        public static string Url
+        public string Url
         {
             get
             {
