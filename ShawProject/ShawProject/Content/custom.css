@@ -17,3 +17,26 @@
 .IND {
     background-color: gray;
 }
+
+.carousel-inner {
+    background-color: pink;
+}
+
+#myIndicator {
+    bottom: 0;
+    margin-bottom: 0;
+
+}
+
+h5, .h5 {
+    font-size: 17px;
+}
+
+.carousel-control .icon-prev, 
+.carousel-control .icon-next {
+    font-size: 100px;
+}
+
+.glyphicon {
+    line-height: 2;
+}
