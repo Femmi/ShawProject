@@ -13,7 +13,6 @@ namespace DataLayer.BusinessObject
             using (var webClientInstance = new WebClient())
             {
                 var jsonData = string.Empty;
-                var jarray = new List<T>();
                 // attempt to download JSON data as a string
                 try
                 {
