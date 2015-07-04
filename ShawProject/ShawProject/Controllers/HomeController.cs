@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using DataLayer.ApplicationBasics;
+using DataLayer.BusinessObject;
+using DataLayer.Model;
 
 namespace ShawProject.Controllers
 {
@@ -10,21 +9,15 @@ namespace ShawProject.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var url = ApplicationBasic.GetApplicationBasicInstance().Url;
+            var cityModelObject = GenericJsonOperator.SerializedJsonDataRetriver<CityModel>(url);
+            ResultModelSortByName resultModelSortByName = new ResultModelSortByName();
+            foreach (var element in cityModelObject)
+            {
+                element.Results.Sort(resultModelSortByName);
+            }
+            return View(cityModelObject);
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }
