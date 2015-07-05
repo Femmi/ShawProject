@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using DataLayer.Model;
 using Newtonsoft.Json;
 
 namespace DataLayer.BusinessObject
