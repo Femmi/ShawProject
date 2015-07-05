@@ -3,76 +3,74 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
+@{
+    var totalVotes = 0;
+    const double percentageByVote = 100;
+}
 <div id="carousel1" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel1" data-slide-to="0" class="active"></li>
-        @for (int i = 1; i < Model.Count(); i++)
+    <ol class="carousel-indicators" id="myIndicator">
+        @for (int i = 0; i < Model.Count(); i++)
         {
-            <li data-target="#carousel1" data-slide-to=@i></li>
+            if (i == 0)
+            {
+                <li data-target="#carousel1" data-slide-to="@i" class="active"></li>
+            }
+            else
+            {
+                <li data-target="#carousel1" data-slide-to=@i></li>
+            }
+
         }
     </ol>
     <div class="carousel-inner">
         @foreach (var element in Model)
         {
-            if (element.Id == 1)
-            {
-                <div class="item active">
-                    <div class="col-lg-12 text-center" style="font-size: 39pt;">
-                        <h3>City: @element.Name</h3>
-                        <h3>Number: @element.Num</h3>
-                        <h3>Polls Reported: @element.PollsReported</h3>
-                        <h3>Polls Total: @element.PollsTotal</h3>
-                    </div>
+            <div @if (element.Id == 1) { <text> class="item active" </text>       } else { <text> class="item" </text>       }>
+
+
+                @foreach (var result in element.Results)
+                {
+                    totalVotes += result.Votes;
+                }
+                <div class="col-lg-12 text-center" style="font-size: 39pt;">
+                    <h3>City: @element.Name</h3>
+                    <h3>Polls Reported: @element.PollsReported</h3>
+                    <h3>Polls Total: @element.PollsTotal</h3>
+                    <h3>Total Votes: @totalVotes</h3>
+
+
                     @foreach (var member in element.Results)
                     {
+                       
+                        double percent = Math.Round((member.Votes * percentageByVote)/totalVotes, 1, MidpointRounding.AwayFromZero) ;
+                        
                         <div class="col-lg-12">
                             <div class=" col-lg-4"></div>
                             <div class="col-lg-4 text-center" style="font-size: 39pt;">
                                 <div class="thumbnail @member.PartyCode">
                                     <h5>Name: @member.Name</h5>
                                     <h5>Party Code: @member.PartyCode</h5>
-                                    <h5>Vote: @member.Votes</h5>
-                                    <h5>Elected: @member.IsElected</h5>
+                                    <h5>Votes: @member.Votes</h5>
+                                    <h5>Vote Percentage: @percent%</h5>
+                                    <h5>Elected: @Html.DisplayFor(modelItem => member.IsElected)</h5>
+
                                 </div>
                             </div>
-                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4">
+                                @if (member.IsElected)
+                                {
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                }
+                            </div>
                         </div>
                     }
                 </div>
-            }
-            else
-            {
-                <div class="item">
-                    <div class="col-lg-12 text-center" style="font-size: 39pt;">
-                        <h3>City: @element.Name</h3>
-                        <h3>Number: @element.Num</h3>
-                        <h3>Polls Reported: @element.PollsReported</h3>
-                        <h3>Polls Total: @element.PollsTotal</h3>
-                        @foreach (var member in element.Results)
-                        {
-                            <div class="col-lg-12">
-                                <div class=" col-lg-4"></div>
-                                <div class="col-lg-4 text-center" style="font-size: 39pt;">
-                                    <div class="thumbnail @member.PartyCode">
-                                        <h5>Name: @member.Name</h5>
-                                        <h5>Party Code: @member.PartyCode</h5>
-                                        <h5>Vote: @member.Votes</h5>
-                                        <h5>Elected: @member.IsElected</h5>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4"></div>
-                            </div>
-                        }
-                    </div>
-                </div>
-
-            }
+            </div>
         }
-    </div>
 
+    </div>
     <a class="left carousel-control" href="#carousel1" data-slide="prev">
-        <span class="icon-prev"></span>
+        <span class="icon-prev "></span>
     </a>
     <a class="right carousel-control" href="#carousel1" data-slide="next">
         <span class="icon-next"></span>
