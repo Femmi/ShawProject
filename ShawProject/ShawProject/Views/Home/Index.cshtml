@@ -25,7 +25,14 @@
     <div class="carousel-inner">
         @foreach (var element in Model)
         {
-            <div @if (element.Id == 1) { <text> class="item active" </text>       } else { <text> class="item" </text>       }>
+            <div @if (element.Id == 1)
+                 {
+                     <text> class="item active" </text>
+                 }
+                 else
+                 {
+                     <text> class="item" </text>
+                 }>
 
 
                 @foreach (var result in element.Results)
@@ -41,9 +48,9 @@
 
                     @foreach (var member in element.Results)
                     {
-                       
-                        double percent = Math.Round((member.Votes * percentageByVote)/totalVotes, 1, MidpointRounding.AwayFromZero) ;
-                        
+
+                        double percent = Math.Round((member.Votes*percentageByVote)/totalVotes, 1, MidpointRounding.AwayFromZero);
+
                         <div class="col-lg-12">
                             <div class=" col-lg-4"></div>
                             <div class="col-lg-4 text-center" style="font-size: 39pt;">
@@ -53,7 +60,6 @@
                                     <h5>Votes: @member.Votes</h5>
                                     <h5>Vote Percentage: @percent%</h5>
                                     <h5>Elected: @Html.DisplayFor(modelItem => member.IsElected)</h5>
-
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -66,6 +72,7 @@
                     }
                 </div>
             </div>
+            totalVotes = 0;
         }
 
     </div>
