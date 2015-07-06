@@ -18,6 +18,5 @@ namespace ShawProject.Controllers
             }
             return View(cityModelObject);
         }
-        
     }
 }
