@@ -30,6 +30,7 @@
 
 h5, .h5 {
     font-size: 17px;
+    color: black;
 }
 
 .carousel-control .icon-prev, 
@@ -38,5 +39,6 @@ h5, .h5 {
 }
 
 .glyphicon {
-    line-height: 2;
+    line-height: 3;
+    right: 130px;
 }
